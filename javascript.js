@@ -10,8 +10,6 @@ function getComputerChoice () {
     }
 }
 
-// console.log(getComputerChoice());
-
 function getHumanChoice () {
   
     let y = prompt("Enter your input: ");
@@ -25,7 +23,6 @@ function getHumanChoice () {
     
 }
 
-// console.log(getHumanChoice());
 function playGame() {
     let humanScore = 0, computerScore = 0;
 
@@ -45,38 +42,19 @@ function playGame() {
 
     function playRound(humanChoice, computerChoice) {
         console.log(`Your choice: ${humanChoice} \nComputer choice: ${computerChoice}`);
-        if (humanChoice === 'rock') {
-            if (computerChoice === 'paper') {
-                computerScore++;
-                console.log("You lose! paper beats rock!");
-            } else if (computerChoice === 'scissors') {
+        if ((humanChoice === 'rock' && computerChoice === 'scissors') ||
+            (humanChoice === 'paper' && computerChoice === 'rock') ||
+            (humanChoice === 'scissors' && computerChoice === 'paper')) {
                 humanScore++;
-                console.log("You win! rock beats scissors!");
-            } else {
-                console.log("Draw!");
-            }
-        } else if (humanChoice === 'paper') {
-            if (computerChoice === 'rock') {
-                humanScore++;
-                console.log("You win! paper beats rock!");
-            } else if (computerChoice === 'scissors') {
-                computerScore++;
-                console.log("You lose! scissors beats paper!");
-            } else {
-                console.log("Draw!");
-            }
-        } else if (humanChoice === 'scissors') {
-            if (computerChoice === 'rock') {
-                computerScore++;
-                console.log("You lose! rock beats scissors!");
-            } else if (computerChoice === 'paper') {
-                humanScore++;
-                console.log("You win! scissors beats paper");
-            } else {
-                console.log("Draw!");
-            }
-        } else {
+                console.log(`You win! ${humanChoice} beats ${computerChoice}!`);
+        } else if (humanChoice === computerChoice) {
+            console.log("Draw!");
+        } else if (humanChoice === undefined) {
             console.log("You entered an invalid choice.")
+        } 
+        else {
+            computerScore++;
+            console.log(`You lose! ${computerChoice} beats ${humanChoice}!`)
         }
     }
 }
